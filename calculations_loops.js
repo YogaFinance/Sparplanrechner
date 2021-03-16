@@ -3,9 +3,9 @@ class Savings_Plan {
     dynamization = 0;
 
     constructor(savingsRate, interestRate, timeHorizon) {
-        this.savingsRate = parseFloat(savingsRate);
-        this.interestRate = parseFloat(interestRate);
-        this.timeHorizon = parseFloat(timeHorizon);
+        this.savingsRate = parseFloat(savingsRate) || 0;
+        this.interestRate = parseFloat(interestRate) || 0;
+        this.timeHorizon = parseFloat(timeHorizon) || 0;
     }
 
     createReturnVector() {
@@ -56,8 +56,8 @@ function execute() {
     var Sparplan = new Savings_Plan(document.getElementById("Sparrate").value, 
                                     document.getElementById("Zinsen").value / 100, 
                                     document.getElementById("horizon").value);
-    Sparplan.initialInvestment = parseFloat(document.getElementById("Erstanlage").value);
-    Sparplan.dynamization = parseFloat(document.getElementById("Dynamisierung").value) / 100;
+    Sparplan.initialInvestment = parseFloat(document.getElementById("Erstanlage").value) || 0;
+    Sparplan.dynamization = parseFloat(document.getElementById("Dynamisierung").value) / 100 || 0;
     Sparplan.createGrossNavHistory();
     var invCum = cumsum(Sparplan.investments);
     // update chart
@@ -67,8 +67,8 @@ function execute() {
     navChart.update();
 }
 
-document.addEventListener("keyup", function(evnt){
-    if ([9,13,48,49,50,51,52,53,54,55,56,57].includes(evnt.keyCode)) {
+document.addEventListener("keyup", function(event){
+    if ([9,13,48,49,50,51,52,53,54,55,56,57].includes(event.keyCode)) {
         execute();
     }
 });
