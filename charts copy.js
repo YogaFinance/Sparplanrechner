@@ -27,7 +27,7 @@ var navChart = new Chart(myChart, {
             fontSize: 25
         },
         legend:{
-            position: 'right',
+            position: 'bottom',
             // labels: {
             //     fontColor: 'red'
             // }
