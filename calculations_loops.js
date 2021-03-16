@@ -8,13 +8,13 @@ class Savings_Plan {
         this.timeHorizon = parseFloat(timeHorizon) || 0;
     }
 
-    createReturnVector() {
-        var returnVector = new Array(parseInt(this.timeHorizon * 12 + 1));
-        for (const i of returnVector.keys()) {
-            returnVector[i] = (1 + this.interestRate) ** (i / 12);
-        }
-        this.returnVector = returnVector;
-    }
+    // createReturnVector() {
+    //     var returnVector = new Array(parseInt(this.timeHorizon * 12 + 1));
+    //     for (const i of returnVector.keys()) {
+    //         returnVector[i] = (1 + this.interestRate) ** (i / 12);
+    //     }
+    //     this.returnVector = returnVector;
+    // }
 
     createInvestmentsVector() {
         var investments = new Array(parseInt(this.timeHorizon * 12 + 1));
@@ -33,14 +33,24 @@ class Savings_Plan {
         this.investments = investments;
     }
 
+    // createGrossNavHistory() {
+    //     this.createInvestmentsVector();
+    //     this.createReturnVector();
+    //     var grossNav = new Array(this.investments.length).fill(0);
+    //     for (const i of grossNav.keys()) {
+    //         for (var j = 0; j <= i; j++) {
+    //             grossNav[i] += this.investments[j] * this.returnVector[i - j];
+    //         }
+    //     }     
+    //     this.grossNav = grossNav;
+    // }
     createGrossNavHistory() {
         this.createInvestmentsVector();
-        this.createReturnVector();
-        var grossNav = new Array(this.investments.length).fill(0);
-        for (const i of grossNav.keys()) {
-            for (var j = 0; j <= i; j++) {
-                grossNav[i] += this.investments[j] * this.returnVector[i - j];
-            }
+        var grossNav = new Array(this.investments.length);
+        grossNav[0] = this.investments[0];
+        const monthlyReturn = (1 + this.interestRate) ** (1 / 12);
+        for (var i = 1; i < grossNav.length; i++) {
+            grossNav[i] = grossNav[i-1] * monthlyReturn + this.investments[i];
         }     
         this.grossNav = grossNav;
     }
