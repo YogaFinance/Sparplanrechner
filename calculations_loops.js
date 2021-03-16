@@ -52,7 +52,6 @@ function cumsum(list) {
 }
 
 function execute() {
-    if (document.getElementById("Sparrate").value)
     var Sparplan = new Savings_Plan(document.getElementById("Sparrate").value, 
                                     document.getElementById("Zinsen").value / 100, 
                                     document.getElementById("horizon").value);
