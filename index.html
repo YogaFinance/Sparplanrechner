@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="BESCHREIBUNG EINFÜGEN">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparplanrechner</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <div class="container">
+            <h1>Sparplanrechner</h1>
+            <canvas id="myChart" height="100"></canvas>
+
+            <form>
+                <label for="Erstanlage">Erstanlage in EUR:</label>
+                <input onclick="execute()" type="number" id="Erstanlage" name="Erstanlage" min="0" max="100000" value="0" step="100">
+                <br/>
+                <label for="Sparrate">Sparrate in EUR:</label>
+                <input onclick="execute()" type="number" id="Sparrate" name="Sparrate" min="0" max="10000" value="100" step="25">
+                <br/>
+                <label for="Dynamisierung">Dynamisierung:</label>
+                <input onclick="execute()" type="number" id="Dynamisierung" name="Dynamisierung" min="0" max="1000" value="0"  step="0.1">%
+                <br/>
+                <label for="horizon">Ansparzeitraum in Jahren:</label>
+                <input onclick="execute()" type="number" id="horizon" name="Ansparzeitraum" min="0" max="1000" value="1">
+                <br/>
+                <label for="Zinsen">Jährliche Zinsen:</label>
+                <input onclick="execute()" type="number" id="Zinsen" name="Zinsen" min="-100" max="10000" value="10" step="0.1">%
+                <br/>
+            </form>
+
+            <form>
+                <label for="taxSimulation">Steuersimulation Deutschland</label>
+                <input type="checkbox" class="taxDummy">
+                <div class="taxInformation">   <br> 
+                    <label for="ETF-Typ">ETF-Typ:</label>
+                    <input type="radio" id="Thesaurierend" name="ETF-Typ" value ="Thesaurierend">
+                    <label for="Thesaurierend">Thesaurierend</label>
+                    <input type="radio" id="Ausschüttend" name="ETF-Typ" value ="Ausschüttend">
+                    <label for="Ausschüttend">Ausschüttend</label><br/>
+                </div>
+            </form>
+
+            <button onclick="execute()" id="btn1">Änderungen abschicken</button>
+
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="math.js"></script>
+    <script src="charts copy.js"></script>
+    <script src="calculations_loops.js"></script>
+
+</body>
+</html>
