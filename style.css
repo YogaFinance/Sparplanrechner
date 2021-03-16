@@ -1,0 +1,7 @@
+.taxInformation {
+    display: none;
+}
+
+.taxDummy:checked + .taxInformation {
+    display: initial;
+}
