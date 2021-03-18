@@ -33,17 +33,6 @@ class Savings_Plan {
         this.investments = investments;
     }
 
-    // createGrossNavHistory() {
-    //     this.createInvestmentsVector();
-    //     this.createReturnVector();
-    //     var grossNav = new Array(this.investments.length).fill(0);
-    //     for (const i of grossNav.keys()) {
-    //         for (var j = 0; j <= i; j++) {
-    //             grossNav[i] += this.investments[j] * this.returnVector[i - j];
-    //         }
-    //     }     
-    //     this.grossNav = grossNav;
-    // }
     createGrossNavHistory() {
         this.createInvestmentsVector();
         var grossNav = new Array(this.investments.length);
@@ -56,6 +45,26 @@ class Savings_Plan {
     }
 }
 
+var inputs = document.getElementsByTagName("input");
+var log = document.getElementById("error-message");
+
+function check() {
+    const fieldsToCheck = ["Erstanlage", "Sparrate", "Dynamisierung", "Ansparzeitraum", "Zinsen"]
+    for (field of fieldsToCheck) {
+        if (parseFloat(inputs[field].value) > parseFloat(inputs[field].max) ||
+            parseFloat(inputs[field].value) < parseFloat(inputs[field].min)) {
+            // styling the number format
+            var minimum = parseFloat(inputs[field].min).toLocaleString();
+            var maximum = parseFloat(inputs[field].max).toLocaleString();
+            log.textContent = `Der Wert "${field}" muss zwischen ${minimum} und ${maximum} liegen.`;
+            return
+        }
+    }
+    // check successful
+    log.textContent = ""
+    execute();
+}
+
 function cumsum(list) {
     let y = 0;
     return list.map(d => y += d);
@@ -64,7 +73,7 @@ function cumsum(list) {
 function execute() {
     var Sparplan = new Savings_Plan(document.getElementById("Sparrate").value, 
                                     document.getElementById("Zinsen").value / 100, 
-                                    document.getElementById("horizon").value);
+                                    document.getElementById("Ansparzeitraum").value);
     Sparplan.initialInvestment = parseFloat(document.getElementById("Erstanlage").value) || 0;
     Sparplan.dynamization = parseFloat(document.getElementById("Dynamisierung").value) / 100 || 0;
     Sparplan.createGrossNavHistory();
@@ -75,9 +84,3 @@ function execute() {
     navChart.data.labels = Array.from(Array(invCum.length).keys());
     navChart.update();
 }
-
-document.addEventListener("keyup", function(event){
-    if ([9,13,48,49,50,51,52,53,54,55,56,57].includes(event.keyCode)) {
-        execute();
-    }
-});

@@ -17,22 +17,22 @@
         <div class="container">
             <h1>Sparplanrechner</h1>
             <canvas id="myChart" height="100"></canvas>
-
+            <p id="error-message" style="color: red"></p>
             <form>
                 <label for="Erstanlage">Erstanlage in EUR:</label>
-                <input onclick="execute()" type="number" id="Erstanlage" name="Erstanlage" min="0" max="100000" value="0" step="100">
+                <input onchange="check()" type="number" id="Erstanlage" name="Erstanlage" min="0" max="100000000" value="0" step="100">
                 <br/>
                 <label for="Sparrate">Sparrate in EUR:</label>
-                <input onclick="execute()" type="number" id="Sparrate" name="Sparrate" min="0" max="10000" value="100" step="25">
+                <input onchange="check()" type="number" id="Sparrate" name="Sparrate" min="0" max="1000000" value="100" step="25">
                 <br/>
                 <label for="Dynamisierung">Dynamisierung:</label>
-                <input onclick="execute()" type="number" id="Dynamisierung" name="Dynamisierung" min="0" max="1000" value="0"  step="0.1">%
+                <input onchange="check()" type="number" id="Dynamisierung" name="Dynamisierung" min="0" max="1000" value="0"  step="0.1">%
                 <br/>
-                <label for="horizon">Ansparzeitraum in Jahren:</label>
-                <input onclick="execute()" type="number" id="horizon" name="Ansparzeitraum" min="0" max="1000" value="1">
+                <label for="Ansparzeitraum">Ansparzeitraum in Jahren:</label>
+                <input onchange="check()" type="number" id="Ansparzeitraum" name="Ansparzeitraum" min="0" max="1000" value="1">
                 <br/>
                 <label for="Zinsen">Jährliche Zinsen:</label>
-                <input onclick="execute()" type="number" id="Zinsen" name="Zinsen" min="-100" max="10000" value="10" step="0.1">%
+                <input onchange="check()" type="number" id="Zinsen" name="Zinsen" min="-100" max="10000" value="10" step="0.1">%
                 <br/>
             </form>
 
