@@ -16,7 +16,11 @@
     <main>
         <div class="container">
             <h1>Sparplanrechner</h1>
-            <canvas id="myChart" height="100"></canvas>
+            <!-- adjusting canvas height responsively is not straight forward, 
+                see https://stackoverflow.com/questions/34772957/how-to-make-canvas-responsive -->
+                
+            <canvas id="myChart"></canvas>
+
             <p id="error-message" style="color: red"></p>
             <form>
                 <label for="Erstanlage">Erstanlage in EUR:</label>

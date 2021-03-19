@@ -1,5 +1,20 @@
 var myChart = document.getElementById('myChart').getContext('2d');
 
+// set canvas size
+if (window.innerWidth < 300) {
+    myChart.canvas.height = 240;
+} else if (window.innerWidth < 500) {
+    myChart.canvas.height = 200;
+} else if (window.innerWidth < 750) {
+    myChart.canvas.height = 150;
+} else if (window.innerWidth < 1000) {
+    myChart.canvas.height = 120;
+} else {
+    myChart.canvas.height = 80;
+}
+
+
+
 // Global options
 Chart.defaults.global.defaultFontFamily = 'Helvetica';
 // Chart.defaults.global.defaultFontSize = 18;

@@ -35,11 +35,10 @@ class Savings_Plan {
 
     createGrossNavHistory() {
         this.createInvestmentsVector();
-        var grossNav = new Array(this.investments.length);
-        grossNav[0] = this.investments[0];
+        var grossNav = [this.investments[0]];
         const monthlyReturn = (1 + this.interestRate) ** (1 / 12);
-        for (var i = 1; i < grossNav.length; i++) {
-            grossNav[i] = grossNav[i-1] * monthlyReturn + this.investments[i];
+        for (var i = 1; i < this.investments.length; i++) {
+            grossNav.push(grossNav[i-1] * monthlyReturn + this.investments[i]);
         }     
         this.grossNav = grossNav;
     }
@@ -60,7 +59,7 @@ function check() {
             return
         }
     }
-    // check successful
+    // check was successful
     log.textContent = ""
     execute();
 }
